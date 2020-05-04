@@ -1,20 +1,22 @@
+require("dotenv").config();
 const express  = require("express");
+const cors  = require("cors");
+const bodyParser = require("body-parser");
 
+const db = require("./models");
 const handle = require("./handlers");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.json({hello: "world"}));
 
 //create an error handler
-app.use((req, res, next) => {
-    const err = new Error("Not found");
-    err.status = 404;
-
-    next(err);
-});
-
+app.use(handle.notFound);
 app.use(handle.errors);
 
 // start the server:
