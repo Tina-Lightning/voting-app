@@ -15,7 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.json({hello: "world"}));
-app.use("/api/auth", routes.auth)
+app.use("/api/auth", routes.auth);
+app.use("/api/polls", routes.poll);
 
 //create an error handler
 app.use(handle.notFound);
