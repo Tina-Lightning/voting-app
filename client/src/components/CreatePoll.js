@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 
 import ErrorMessage from "../components/ErrorMessage";
 import { connect } from "react-redux";
-import {createPoll} from "../store/actions";
+import { createPoll } from "../store/actions";
 
 
 class CreatePoll extends Component {
@@ -20,17 +20,17 @@ class CreatePoll extends Component {
     }
 
     handleChange(e) {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     addAnswer() {
-        this.setState({options: [...this.state.options, ""] });
+        this.setState({ options: [...this.state.options, ""] });
     }
 
     handleAnswer(e, index) {
         const options = [...this.state.options];
         options[index] = e.target.value;
-        this.setState({options});
+        this.setState({ options });
     }
 
     handleSubmit(e) {
@@ -40,31 +40,35 @@ class CreatePoll extends Component {
 
     render() {
 
-        const options = this.state.options.map((options, i) =>  <Fragment key={i}>
-            <label>Option</label>
-            <input 
-            type="text" 
-            value={options}
-            
-            onChange={e => this.handleAnswer(e, i)}
+        const options = this.state.options.map((options, i) => <Fragment key={i}>
+            <label className="form-label">Option</label>
+            <input
+            className="form-input"
+                type="text"
+                value={options}
+
+                onChange={e => this.handleAnswer(e, i)}
             />
         </Fragment>)
 
-        return <form onSubmit={this.handleSubmit}>
-            <label htmlFor="question">Question</label>
-            <input 
-            type="text" 
-            name="question"
-            value={this.state.question}
-            onChange={this.handleChange}
+        return <form className="form" onSubmit={this.handleSubmit}>
+            <label className="form-label" htmlFor="question">Question</label>
+            <input
+                className="form-input"
+                type="text"
+                name="question"
+                value={this.state.question}
+                onChange={this.handleChange}
             />
 
             {options}
 
-            <button type="button" onClick={this.addAnswer}>Add Options</button>
-            <button type="submit">Submit</button>
+            <div className="button_center">
+                <button className="button" type="button" onClick={this.addAnswer}>Add Options</button>
+                <button className="button" type="submit">Submit</button>
+            </div>
         </form>
     }
 }
 
-export default connect(() => ({}), {createPoll})(CreatePoll); 
+export default connect(() => ({}), { createPoll })(CreatePoll); 

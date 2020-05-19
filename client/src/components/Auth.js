@@ -33,9 +33,10 @@ class Auth extends React.Component {
         const { username, password } = this.state;
 
         return <div>
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="username">Username</label>
+            <form className="form" onSubmit={this.handleSubmit}>
+                <label className="form-label" htmlFor="username">Username</label>
                 <input 
+                className="form-input"
                 type="text" 
                 value={username} 
                 name="username" 
@@ -43,10 +44,12 @@ class Auth extends React.Component {
                 onChange={this.handleChange} 
                 />
 
-                <label htmlFor="password">Password</label>
-                <input type="password" value={password} name="password" autoComplete="off" onChange={this.handleChange}/>
+                <label className="form-label" htmlFor="password">Password</label>
+                <input className="form-input" type="password" value={password} name="password" autoComplete="off" onChange={this.handleChange}/>
 
-                <button type="submit">Submit</button>
+                <div className="button_center">
+                <button className="button" type="submit">Submit</button>
+                </div>
             </form>
         </div>
     }
